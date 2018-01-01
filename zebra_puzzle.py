@@ -60,5 +60,25 @@ def timed_call(fn, *args):
     return end_time - start_time, result
 
 
+def average(numbers):
+    "Return the average (arithmetic mean) of a sequence of numbers."
+    return sum(numbers) / float(len(numbers))
+
+
+def timed_calls(n, fn, *args):
+    """Call fn(*args) repeatedly: n times if n is an int, or up to
+    n seconds if n is a float; return the min, avg, and max time"""
+    if isinstance(n, int):
+        times = [timed_call(fn, *args)[0] for _ in range(n)]
+    else:
+        times = []
+        total_time = 0.0
+        while total_time < n:
+            time = timed_call(fn, *args)[0]
+            times.append(time)
+            total_time += time
+    return min(times), average(times), max(times)
+
+
 if __name__ == '__main__':
-    print(timed_call(zebra_puzzle))
+    print(timed_calls(1000, zebra_puzzle))
