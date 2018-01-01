@@ -15,7 +15,7 @@ def solve(formula):
     '''
     for f in fill_in(formula):
         if valid(f):
-            return f
+            print(f)
 
 
 def fill_in(formula):
@@ -30,3 +30,5 @@ def fill_in(formula):
 
 if __name__ == '__main__':
     print(solve('ODD + ODD == EVEN'))
+    import cProfile
+    cProfile.run("solve('ODD + ODD == EVEN')")
