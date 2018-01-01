@@ -30,8 +30,7 @@ def zebra_puzzle():
                 for (red, green, ivory, yellow, blue) in orderings
                 if immediate_right(green, ivory)  # 6
                 for (Englishman, Spaniard, Ukrainian, Japanese,
-                     Norwegian) in orderings
-                if Englishman is red  # 2
+                     Norwegian) in orderings if Englishman is red  # 2
                 if Norwegian is first  # 10
                 if next_to(Norwegian, blue)  #15
                 for (coffee, tea, milk, oj, WATER) in orderings
@@ -39,8 +38,7 @@ def zebra_puzzle():
                 if Ukrainian is tea  # 5
                 if milk is middle  # 9
                 for (OldGold, Kools, Chesterfields, LuckyStrike,
-                     Parliaments) in orderings 
-                if Kools is yellow  # 8
+                     Parliaments) in orderings if Kools is yellow  # 8
                 if LuckyStrike is oj  # 13
                 if Japanese is Parliaments  # 14
                 for (dog, snails, fox, horse, ZEBRA) in orderings
@@ -50,5 +48,17 @@ def zebra_puzzle():
                 if next_to(Kools, horse)  # 12
                 )
 
+
+def timed_call(fn, *args):
+    '''
+    Call function with args; return the time in seconds and result.
+    '''
+    import time
+    start_time = time.clock()
+    result = fn(*args)
+    end_time = time.clock()
+    return end_time - start_time, result
+
+
 if __name__ == '__main__':
-    print(zebra_puzzle())
+    print(timed_call(zebra_puzzle))
