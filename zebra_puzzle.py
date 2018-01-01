@@ -6,7 +6,7 @@ Zebra Puzzle
 import itertools
 
 
-def is_right(house1, house2):
+def immediate_right(house1, house2):
     '''
     House house1 is immediately right of house2 if house1-house2 == 1.
     '''
@@ -38,7 +38,7 @@ def zebra_puzzle():
                 if Spaniard is dog  # 3
                 if coffee is green  # 4
                 if Ukrainian is tea  # 5
-                if is_right(green, ivory)  # 6
+                if immediate_right(green, ivory)  # 6
                 if OldGold is snails  # 7
                 if Kools is yellow  # 8
                 if milk is middle  # 9
