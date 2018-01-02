@@ -101,5 +101,30 @@ def instrument_fn(fn, *args):
                                                        c.starts, c.items))
 
 
+def floor_puzzle():
+    '''
+    Hopper, Kay, Liskov, Perlis, and Ritchie live on
+    different floors of a five-floor apartment building.
+    Hopper does not live on the top floor.
+    Kay does not live on the bottom floor.
+    Liskov does not live on either the top or the bottom floor.
+    Perlis lives on a higher floor than does Kay.
+    Ritchie does not live on a floor adjacent to Liskov's.
+    Liskov does not live on a floor adjacent to Kay's.
+    '''
+    floors = bottom, _, _, _, top = [1, 2, 3, 4, 5]
+    orderings = itertools.permutations(floors)  # init
+    for Hopper, Kay, Liskov, Perlis, Ritchie in orderings:
+        if (Hopper is not top  # 1
+                and Kay is not bottom  # 2
+                and Liskov is not top and Liskov is not bottom  # 3
+                and Perlis > Kay  # 4
+                and abs(Ritchie - Liskov) > 1  # 5
+                and abs(Liskov - Kay) > 1  # 6
+            ):
+            return [Hopper, Kay, Liskov, Perlis, Ritchie]
+
+
 if __name__ == '__main__':
     print(timed_calls(1000, zebra_puzzle))
+    print(floor_puzzle())
