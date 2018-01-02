@@ -80,5 +80,26 @@ def timed_calls(n, fn, *args):
     return min(times), average(times), max(times)
 
 
+def c(sequence):
+    '''
+    Generate items in sequence; keeping counts as we go.
+    c.starts is the number of sequences started; c.items is number of items generated.
+    '''
+    c.starts += 1
+    for item in sequence:
+        c.items += 1
+        yield item
+
+
+def instrument_fn(fn, *args):
+    '''
+    Instrument for count how many items generator from generator.
+    '''
+    c.starts, c.items = 0, 0
+    result = fn(*args)
+    print('%s got %s with %5d iters over %7d items' % (fn.__name__, result,
+                                                       c.starts, c.items))
+
+
 if __name__ == '__main__':
     print(timed_calls(1000, zebra_puzzle))
