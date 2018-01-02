@@ -52,6 +52,12 @@ def complie_formula(formula, verbose=False):
     params = ', '.join(letters)
     tokens = map(compile_word, re.split('([A-Z]+)', formula))
     body = ''.join(tokens)
+
+    first_letters = set(re.findall(r'\b([A-Z])[A-Z]+', formula))
+    if first_letters:
+        # for exercise, not necessary for this function
+        body = '{} and {}'.format(' and '.join(first_letters), body)
+
     f = 'lambda {}: {}'.format(params, body)
     if verbose:
         print(f)
